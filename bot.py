@@ -42,3 +42,10 @@ async def cmd_start(message: Message, state: FSMContext):
     else:
         await message.answer(
             "🥊 Добро пожаловать в <b>IFA</b>")
+import asyncio
+
+async def main():
+    await dp.start_polling(bot)
+
+if __name__ == "__main__":
+    asyncio.run(main())
