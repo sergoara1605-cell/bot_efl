@@ -42,8 +42,8 @@ async def cmd_start(message: Message, state: FSMContext):
     else:
         await message.answer(
             "🥊 Добро пожаловать в <b>IFA</b>")
-import asyncio
 import os
+import asyncio
 from aiohttp import web
 from aiogram.webhook.aiohttp_server import SimpleRequestHandler, setup_application
 
@@ -63,8 +63,13 @@ async def on_startup(bot: Bot):
 
 
 async def main():
+    # Создаём таблицы базы данных
+    await db.init_db()
+
+    # Создаём веб-приложение
     app = web.Application()
 
+    # Подключаем Telegram webhook
     webhook_requests_handler = SimpleRequestHandler(
         dispatcher=dp,
         bot=bot,
@@ -77,6 +82,7 @@ async def main():
 
     setup_application(app, dp, bot=bot)
 
+    # Запускаем webhook
     dp.startup.register(on_startup)
 
     runner = web.AppRunner(app)
