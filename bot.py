@@ -41,4 +41,4 @@ async def cmd_start(message: Message, state: FSMContext):
         )
     else:
         await message.answer(
-            "🥊 Добро пожаловать в <b>IFA</b>
+            "🥊 Добро пожаловать в <b>IFA</b>")
